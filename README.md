@@ -124,14 +124,95 @@ Dilihat dari _Gambar 1. Informasi Dataset_ dataset ini berisi informasi sebagai 
 
 ### EDA - Univariate Analysis
 
+![image](https://github.com/user-attachments/assets/5faa91e0-f930-488d-a0fc-002ab3fa8f1c)
 
+Gambar 2. Informasi Dataset
 
+Gambar 2 merupakan informasi mengenai dataset yang sigunakan :
+- Kolom id berfungsi sebagai pengidentifikasi unik bagi setiap individu, namun statistik deskriptif seperti rata-rata (mean), nilai minimum (min), dan maksimum (max) tidak begitu relevan untuk analisis kolom ini. Kolom age menunjukkan usia individu, dengan rata-rata usia sebesar 43,23 tahun. Usia termuda dalam dataset tercatat adalah 0,08 tahun (mungkin bayi), sementara usia tertua adalah 82 tahun. Distribusi usia juga dapat dilihat dari kuartil, di mana 50% individu berusia 45 tahun atau lebih muda.
+- Untuk kolom hypertension, yang merupakan variabel biner (0 atau 1) yang menunjukkan apakah individu memiliki hipertensi, didapatkan rata-rata sebesar 0,097, yang berarti sekitar 9,7% individu dalam dataset memiliki hipertensi. Demikian juga pada kolom heart_disease, yang menunjukkan riwayat penyakit jantung, dengan rata-rata 0,054, mengindikasikan bahwa hanya sekitar 5,4% individu yang mengalami kondisi ini.
+- Kolom avg_glucose_level mencerminkan rata-rata kadar glukosa darah individu dengan rata-rata sebesar 106,15 mg/dL, yang termasuk dalam kisaran normal. Namun, nilai maksimum mencapai 271,74 mg/dL, yang bisa mengindikasikan adanya individu dengan diabetes atau hiperglikemia. Median kadar glukosa (50%) adalah 91,89 mg/dL, menunjukkan bahwa setengah dari data berada di bawah nilai tersebut.
+- Sedangkan kolom bmi atau Body Mass Index menunjukkan rata-rata BMI sebesar 28,89, yang mendekati kategori overweight berdasarkan pedoman WHO. Nilai maksimum BMI tercatat 97,6, yang menunjukkan kemungkinan adanya outlier, baik karena kesalahan data atau kasus ekstrem obesitas. Penting untuk dicatat bahwa terdapat data kosong, dengan 4.909 data valid dari total 5.110, sehingga perlu penanganan khusus untuk analisis lanjutan.
+- Pada kolom stroke, yang merupakan variabel target biner menunjukkan apakah individu pernah mengalami stroke, didapatkan rata-rata 0,048, menandakan sekitar 4,87% individu dalam dataset pernah mengalami stroke. Dari kesimpulan awal, sebagian besar individu dalam dataset tidak memiliki hipertensi, penyakit jantung, ataupun riwayat stroke. Data seperti BMI yang memiliki missing values perlu ditangani sebelum model pemodelan. Selain itu, nilai maksimum pada beberapa kolom, termasuk avg_glucose_level dan bmi, menunjukkan adanya kemungkinan outlier yang dapat memengaruhi hasil analisis atau model prediksi. Faktor usia, hipertensi, penyakit jantung, dan kadar glukosa darah terlihat relevan untuk analisis risiko stroke.
 
+![image](https://github.com/user-attachments/assets/73e7a5e0-7a33-4360-b1eb-32b55af536ce)
+Gambar 3. Persebaran data pada dataset stroke
 
+Gambar 3 merupakan visualisasi exploratory data analysis dari persebaran data pada dataset yang digunakan pada project ini adalah stroke dataset. Dapat dilihat pada gambar diatas terlihat visualisasi dari sebaran data setiap kolom yang terdapat pada dataset. Adapun penjelasan dari sebaran data dari gambar diatas adalah sebagai berikut :
 
+- Distribusi data BMI cenderung mirip distribusi normal dengan puncak sekitar 20-30. Namun, terdapat beberapa outlier dengan BMI di atas 60 yang perlu dipertimbangkan untuk preprocessing agar model prediksi menjadi lebih efektif.
+- Sebagian besar data tingkat glukosa terkonsentrasi antara 50 hingga 150, dengan adanya outlier yang mencapai lebih dari 200. Distribusi ini cenderung right-skewed, yang menunjukkan bahwa ada sebagian kecil individu yang memiliki tingkat glukosa sangat tinggi.
+- Distribusi usia terlihat cukup merata, dengan peningkatan pada kelompok usia 40-60 tahun. Hal ini menunjukkan variasi yang baik dalam rentang usia, meskipun terdapat potensi bias yang lebih condong kepada kelompok dewasa dan lansia.
+- Dalam dataset, sekitar 95% individu tidak mengalami stroke (label 0), sedangkan hanya 5% yang mengalami stroke (label 1). Ketidakseimbangan kelas yang signifikan ini penting untuk diperhatikan dalam proses pembuatan model prediksi agar hasilnya lebih akurat. Pada project ini akan diterapkan SMOTE untuk memperbaiki keseimbangan kelas.
+- Hampir 90% individu tidak memiliki hipertensi (label 0), sementara sekitar 10% memiliki hipertensi (label 1). Distribusi yang ada menunjukkan ketidakseimbangan data yang perlu dicermati saat membangun model analisis.
+- Hanya sekitar 5% individu dalam dataset yang memiliki riwayat penyakit jantung (label 1), sementara sisanya tidak mengalami penyakit jantung (label 0). Ketidakseimbangan kelas ini juga perlu diperhatikan untuk meningkatkan kinerja model prediksi.
+- Mayoritas individu dalam dataset pernah menikah (label "Yes") dibandingkan yang belum pernah menikah (label "No"). Fitur ini mungkin memiliki hubungan dengan usia, mengingat orang yang lebih tua cenderung lebih mungkin sudah menikah.
+- Distribusi gender dalam dataset hampir seimbang antara laki-laki (Male) dan perempuan (Female), dengan jumlah perempuan sedikit lebih tinggi. Terdapat juga kelas tambahan "Other," tetapi jumlahnya sangat kecil dan tidak signifikan.
+- Data menunjukkan distribusi yang hampir merata antara individu yang tinggal di daerah urban dan rural, menandakan keseimbangan dalam fitur ini.
+Terdapat ketidakseimbangan yang signifikan pada fitur target (stroke) serta fitur terkait seperti hypertension dan heart disease, yang harus diperhatikan saat melatih model. Penggunaan metode SMOTE atau class weighting bisa dipertimbangkan untuk mengatasi masalah ini. Analisis korelasi antar fitur juga diperlukan untuk memahami hubungan, khususnya antara age, hypertension, heart disease, dan stroke.
 
 ### EDA - Multivariate Analysis
 
+![image](https://github.com/user-attachments/assets/e01f9457-e410-4741-b2d8-07d17e5f0e2d)
+Gambar 4. Analisis Multivariate
+
+![image](https://github.com/user-attachments/assets/27ba219a-f217-4b60-8cbf-a61a4dd2e70e)
+Gambar 5. Analisis Matriks Korelasi
+
+Pada Gambar 4 Analisis Multivariat, dengan menggunakan fungsi pairplot dari library seaborn, tampak terlihat relasi pasangan dalam dataset menunjukan pola acak. Pada pola sebaran data grafik pairplot. Dan Pada Gambar 5 Analisis Matriks Korelasi, merupakan Correlation Matrix menunjukkan hubungan antar fitur dalam nilai korelasi. Jika diamati, fitur umur memiliki skor korelasi yang cukup besar 0.28 dengan fitur hipertensi, dan juga fitur berat badan yang cukup besar 0.33 dengan fitur umur.
+
+## Data Preparation
+Berikut merupakan data preparation yang diterapkan pada project ini :
+
+1. Data Gathering
+Pada tahap ini, data diimpor dengan hati-hati agar dapat dibaca dan diproses dengan baik menggunakan dataframe dari library Pandas. Proses ini penting untuk memastikan data yang dikumpulkan dapat diolah secara efisien dan akurat.
+
+2. Data Assessing
+Setelah data berhasil dikumpulkan, langkah ini melibatkan beberapa pengecekan untuk memastikan kualitas data, meliputi:
+- Duplicate Data
+Pengecekan dilakukan untuk mencari data yang serupa atau identik dengan data lainnya dalam dataset. Mengidentifikasi dan menghapus duplikasi penting untuk menghindari bias dalam analisis.
+- Missing Value
+Pengecekan dilakukan untuk menemukan data atau informasi yang hilang atau tidak tersedia. Menangani missing value sangat penting agar integritas dataset tetap terjaga. Pada project ini terdapat missing value pada kolom BMI, cara untuk mengisi missing value yang dilakukan pada pre-processingnya ada dengan mengisi data dengan rata-rata dari BMI yang terdapat pada dataset.
+- Outlier
+Analisis terhadap data yang menyimpang dari pola atau rata-rata sekumpulan data dilakukan untuk menentukan apakah ada outlier. Keberadaan outlier dapat memberikan informasi penting atau mengganggu model prediksi yang dikembangkan.
+
+3. Data Cleaning
+Pada tahap ini, beberapa langkah diambil untuk membersihkan dan menyiapkan data agar siap untuk analisis lebih lanjut:
+- Converting Column Type
+Tipe data pada kolom tertentu diubah agar sesuai dengan kebutuhan analisis. Misalnya, kolom yang seharusnya berisi data numerik tetapi terformat sebagai string perlu diubah untuk memungkinkan operasi matematika.
+- Train Test Split
+Dataset dibagi menjadi dua bagian: satu untuk data latih dan satu lagi untuk data uji. Pembagian ini sangat penting untuk menguji model secara independen dengan data yang tidak pernah dilihat sebelumnya, sehingga kemampuan generalisasi model dapat divalidasi.
+- Normalization
+Data ditransformasi ke dalam skala yang seragam, sehingga semua fitur atau atribut memiliki rentang nilai yang sebanding. Hal ini bertujuan untuk mengurangi bias akibat perbedaan skala antar atribut dan meningkatkan kinerja algoritma pembelajaran mesin.
+- SMOTE (Synthetic Minority Over-sampling Technique)
+Ketidakseimbangan kelas dalam dataset, seperti dalam kasus fitur target (misalnya stroke), SMOTE diterapkan. Teknik ini menghasilkan contoh sintetik dari kelas minoritas dengan cara menginterpolasi antara contoh yang ada, sehingga membantu model untuk belajar dari data yang lebih seimbang.
+
+Proses preprocessing dalam project ini akan dijelaskan sebagai berikut:
+
+1. Pemeriksaan Missing Values
+Fungsi data.isnull().sum() digunakan untuk menghitung jumlah data yang hilang (missing values) di setiap kolom dataset. Langkah ini penting untuk mengetahui apakah ada nilai kosong yang perlu ditangani sebelum memproses data lebih lanjut.
+
+2. Pemilahan Fitur (X) dan Label (Y)
+Dataset dipisahkan menjadi fitur independen x (dari kolom kedua hingga sebelum kolom terakhir) dan target label y (kolom terakhir). Hal ini dilakukan dengan menggunakan iloc dari pandas. Proses ini adalah langkah awal untuk membangun model machine learning di mana fitur digunakan untuk memprediksi label.
+
+3. Encoding Kategorikal (One-Hot Encoding)
+Untuk mengonversi fitur kategorikal menjadi bentuk numerik yang dapat diproses oleh algoritma machine learning, digunakan One-Hot Encoding.
+Kolom 0, 5, dan 9 yang berisi data kategorikal diterjemahkan menjadi representasi biner menggunakan ColumnTransformer dengan OneHotEncoder. Kolom lainnya tetap diproses tanpa perubahan (remainder='passthrough).
+
+4. Encoding Label (Label Encoding):
+Beberapa kolom spesifik diubah menjadi representasi numerik diskrit menggunakan Label Encoding. Ini dilakukan dengan LabelEncoder dari sklearn. Langkah ini berguna untuk kategori yang hanya memiliki dua atau sedikit label unik, seperti "Yes/No".
+
+5. Pengecekan Dimensi Data
+Ukuran data hasil preprocessing diperiksa dengan x.shape dan y.shape untuk memastikan data telah diproses dengan benar. Hal ini memastikan bahwa dimensi data sesuai dengan yang diharapkan sebelum melanjutkan ke pelatihan model.
+
+Proses di atas bertujuan untuk menyiapkan data dalam format yang dapat diproses oleh algoritma machine learning. Fitur kategorikal diubah menjadi representasi numerik, fitur target dipisahkan, dan potensi permasalahan data seperti missing values diperiksa untuk meminimalkan error selama pelatihan model. Pada proyek ini digunakan Train Test Split pada library sklearn.model_selection untuk membagi dataset menjadi data latih dan data uji dengan pembagian sebesar 20:80 dan random state sebesar 0. Semua proses ini diperlukan dalam rangka membuat model yang baik.
+
+## Modeling
+Pada project ini menggunakan 8 algoritma machine learning dan 3 algoritma deep learning, yang diantaranya sebagai berikut :
+
+
+
+## Evaluation
 
 
 
