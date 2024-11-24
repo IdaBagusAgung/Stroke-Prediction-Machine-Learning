@@ -70,7 +70,7 @@ Tujuan dari proyek ini meliputi:
     * XGBoost: Algoritma boosting yang memberikan performa tinggi dengan menangkap pola kompleks dalam data.
 
 - Evaluasi Model:
-    * Metrik seperti Akurasi, Precision, Recall, F1-Score, dan AUC-ROC akan digunakan untuk mengevaluasi model.
+    * Metrik seperti Akurasi, Precision, Recall dan F1-Score digunakan untuk mengevaluasi model, Metrik evaluasi yang ditekankan pada project ini adalah metrik evaluasi dengan menggunakan akurasi
 
 #### 3. Penerapan Algoritma Deep Learning
 - Mengintegrasikan algoritma pembelajaran mendalam untuk meningkatkan prediksi:
@@ -100,9 +100,9 @@ Tujuan dari proyek ini meliputi:
 
 ![image](https://github.com/user-attachments/assets/2615011d-d8e4-4560-b0cb-4e56393f8614)
 
-Gambar 1. Informasi Dataset
+Tabel 1. Informasi Dataset
 
-Dilihat dari _Gambar 1. Informasi Dataset_ dataset ini berisi informasi sebagai berikut ini : 
+Dilihat dari _Tabel 1. Informasi Dataset_ dataset ini berisi informasi sebagai berikut ini : 
 - Dataset berupa CSV (Comma-Seperated Values).
 - Dataset memiliki 5110 sample dengan 12 fitur.
 - Dataset memiliki 3 fitur bertipe float64, 4 fitur bertipe o=int64 dan 5 fitur bertipe object.
@@ -120,15 +120,15 @@ Dilihat dari _Gambar 1. Informasi Dataset_ dataset ini berisi informasi sebagai 
 - bmi: Body Mass Index (Indeks Massa Tubuh) pasien, yang merupakan ukuran untuk menentukan apakah seseorang memiliki berat badan yang sehat, berlebih, atau kurang. BMI yang tidak normal dapat berkontribusi pada risiko penyakit cardiovascular, termasuk stroke.
 - smoking_status: Menunjukkan status merokok pasien, yang dapat berupa "pernah merokok", "tidak pernah merokok", "sedang merokok" atau "Tidak Diketahui". Merokok adalah faktor risiko yang signifikan untuk banyak penyakit, termasuk stroke.
 - stroke: Indikator yang menunjukkan apakah pasien pernah mengalami stroke, diwakili dengan nilai 1 jika pernah mengalami stroke dan 0 jika tidak. Atribut ini merupakan hasil yang ingin diprediksi dalam model analisis risiko stroke.
-- Informasi di atas mencakup berbagai faktor demografis, kesehatan, dan gaya hidup yang relevan dalam menentukan risiko stroke, dan dapat digunakan untuk memfasilitasi pengembangan model prediksi yang lebih akurat.
+Informasi di atas mencakup berbagai faktor demografis, kesehatan, dan gaya hidup yang relevan dalam menentukan risiko stroke, dan dapat digunakan untuk memfasilitasi pengembangan model prediksi yang lebih akurat.
 
 ### EDA - Univariate Analysis
 
 ![image](https://github.com/user-attachments/assets/5faa91e0-f930-488d-a0fc-002ab3fa8f1c)
 
-Gambar 2. Informasi Dataset
+Gambar 1. Informasi Dataset
 
-Gambar 2 merupakan informasi mengenai dataset yang sigunakan :
+Gambar 1 merupakan informasi mengenai dataset yang sigunakan :
 - Kolom id berfungsi sebagai pengidentifikasi unik bagi setiap individu, namun statistik deskriptif seperti rata-rata (mean), nilai minimum (min), dan maksimum (max) tidak begitu relevan untuk analisis kolom ini. Kolom age menunjukkan usia individu, dengan rata-rata usia sebesar 43,23 tahun. Usia termuda dalam dataset tercatat adalah 0,08 tahun (mungkin bayi), sementara usia tertua adalah 82 tahun. Distribusi usia juga dapat dilihat dari kuartil, di mana 50% individu berusia 45 tahun atau lebih muda.
 - Untuk kolom hypertension, yang merupakan variabel biner (0 atau 1) yang menunjukkan apakah individu memiliki hipertensi, didapatkan rata-rata sebesar 0,097, yang berarti sekitar 9,7% individu dalam dataset memiliki hipertensi. Demikian juga pada kolom heart_disease, yang menunjukkan riwayat penyakit jantung, dengan rata-rata 0,054, mengindikasikan bahwa hanya sekitar 5,4% individu yang mengalami kondisi ini.
 - Kolom avg_glucose_level mencerminkan rata-rata kadar glukosa darah individu dengan rata-rata sebesar 106,15 mg/dL, yang termasuk dalam kisaran normal. Namun, nilai maksimum mencapai 271,74 mg/dL, yang bisa mengindikasikan adanya individu dengan diabetes atau hiperglikemia. Median kadar glukosa (50%) adalah 91,89 mg/dL, menunjukkan bahwa setengah dari data berada di bawah nilai tersebut.
@@ -136,9 +136,9 @@ Gambar 2 merupakan informasi mengenai dataset yang sigunakan :
 - Pada kolom stroke, yang merupakan variabel target biner menunjukkan apakah individu pernah mengalami stroke, didapatkan rata-rata 0,048, menandakan sekitar 4,87% individu dalam dataset pernah mengalami stroke. Dari kesimpulan awal, sebagian besar individu dalam dataset tidak memiliki hipertensi, penyakit jantung, ataupun riwayat stroke. Data seperti BMI yang memiliki missing values perlu ditangani sebelum model pemodelan. Selain itu, nilai maksimum pada beberapa kolom, termasuk avg_glucose_level dan bmi, menunjukkan adanya kemungkinan outlier yang dapat memengaruhi hasil analisis atau model prediksi. Faktor usia, hipertensi, penyakit jantung, dan kadar glukosa darah terlihat relevan untuk analisis risiko stroke.
 
 ![image](https://github.com/user-attachments/assets/73e7a5e0-7a33-4360-b1eb-32b55af536ce)
-Gambar 3. Persebaran data pada dataset stroke
+Gambar 2. Persebaran data pada dataset stroke
 
-Gambar 3 merupakan visualisasi exploratory data analysis dari persebaran data pada dataset yang digunakan pada project ini adalah stroke dataset. Dapat dilihat pada gambar diatas terlihat visualisasi dari sebaran data setiap kolom yang terdapat pada dataset. Adapun penjelasan dari sebaran data dari gambar diatas adalah sebagai berikut :
+Gambar 2 merupakan visualisasi exploratory data analysis dari persebaran data pada dataset yang digunakan pada project ini adalah stroke dataset. Dapat dilihat pada gambar diatas terlihat visualisasi dari sebaran data setiap kolom yang terdapat pada dataset. Adapun penjelasan dari sebaran data dari gambar diatas adalah sebagai berikut :
 
 - Distribusi data BMI cenderung mirip distribusi normal dengan puncak sekitar 20-30. Namun, terdapat beberapa outlier dengan BMI di atas 60 yang perlu dipertimbangkan untuk preprocessing agar model prediksi menjadi lebih efektif.
 - Sebagian besar data tingkat glukosa terkonsentrasi antara 50 hingga 150, dengan adanya outlier yang mencapai lebih dari 200. Distribusi ini cenderung right-skewed, yang menunjukkan bahwa ada sebagian kecil individu yang memiliki tingkat glukosa sangat tinggi.
@@ -154,12 +154,12 @@ Terdapat ketidakseimbangan yang signifikan pada fitur target (stroke) serta fitu
 ### EDA - Multivariate Analysis
 
 ![image](https://github.com/user-attachments/assets/e01f9457-e410-4741-b2d8-07d17e5f0e2d)
-Gambar 4. Analisis Multivariate
+Gambar 3. Analisis Multivariate
 
 ![image](https://github.com/user-attachments/assets/27ba219a-f217-4b60-8cbf-a61a4dd2e70e)
-Gambar 5. Analisis Matriks Korelasi
+Gambar 4. Analisis Matriks Korelasi
 
-Pada Gambar 4 Analisis Multivariat, dengan menggunakan fungsi pairplot dari library seaborn, tampak terlihat relasi pasangan dalam dataset menunjukan pola acak. Pada pola sebaran data grafik pairplot. Dan Pada Gambar 5 Analisis Matriks Korelasi, merupakan Correlation Matrix menunjukkan hubungan antar fitur dalam nilai korelasi. Jika diamati, fitur umur memiliki skor korelasi yang cukup besar 0.28 dengan fitur hipertensi, dan juga fitur berat badan yang cukup besar 0.33 dengan fitur umur.
+Pada Gambar 3 Analisis Multivariat, dengan menggunakan fungsi pairplot dari library seaborn, tampak terlihat relasi pasangan dalam dataset menunjukan pola acak. Pada pola sebaran data grafik pairplot. Dan Pada Gambar 4 Analisis Matriks Korelasi, merupakan Correlation Matrix menunjukkan hubungan antar fitur dalam nilai korelasi. Jika diamati, fitur umur memiliki skor korelasi yang cukup besar 0.28 dengan fitur hipertensi, dan juga fitur berat badan yang cukup besar 0.33 dengan fitur umur.
 
 ## Data Preparation
 Berikut merupakan data preparation yang diterapkan pada project ini :
@@ -208,14 +208,247 @@ Ukuran data hasil preprocessing diperiksa dengan x.shape dan y.shape untuk memas
 Proses di atas bertujuan untuk menyiapkan data dalam format yang dapat diproses oleh algoritma machine learning. Fitur kategorikal diubah menjadi representasi numerik, fitur target dipisahkan, dan potensi permasalahan data seperti missing values diperiksa untuk meminimalkan error selama pelatihan model. Pada proyek ini digunakan Train Test Split pada library sklearn.model_selection untuk membagi dataset menjadi data latih dan data uji dengan pembagian sebesar 20:80 dan random state sebesar 0. Semua proses ini diperlukan dalam rangka membuat model yang baik.
 
 ## Modeling
-Pada project ini menggunakan 8 algoritma machine learning dan 3 algoritma deep learning, yang diantaranya sebagai berikut :
+Pada project ini menggunakan 8 algoritma machine learning dan 3 algoritma deep learning dan juga terdapat dua kondisi dengan tidak menetapkan hyperparameter dan menerapkan hyperparameter tuning menggunakan gridsearch, yang diantaranya sebagai berikut :
 
+1. Logistic Regression
+Logistic Regression adalah metode statistik yang digunakan untuk klasifikasi biner dengan memodelkan probabilitas bahwa suatu peristiwa terjadi. Metode ini menghasilkan sebuah fungsi sigmoid yang mengubah output regresi linier menjadi nilai antara 0 dan 1.
 
+Kelebihan:
+- Mudah Diinterpretasikan: Model ini memberikan probabilitas yang jelas untuk klasifikasi, memudahkan pemahaman hasil.
+- Cepat dan Efisien: Proses pelatihan cepat, membuatnya efektif untuk dataset kecil hingga menengah.
+- Penerapan Luas: Sering digunakan dalam bidang medis, pemasaran, dan ilmu sosial.
+
+Kekurangan:
+- Asumsi Linearitas: Kurang efektif untuk data dengan hubungan non-linier tanpa transformasi fitur.
+- Sensitif Terhadap Outlier: Kinerja bisa terpengaruh oleh data pencilan yang ada dalam dataset.
+
+Parameter:
+- C: Regularisasi invers (1/λ). Semakin kecil nilai C, semakin kuat regularisasi untuk menghindari overfitting.
+- penalty: Jenis penalti yang diterapkan pada koefisien model:
+   - l1: Penalti Lasso (memungkinkan sparsity).
+   - l2: Penalti Ridge (mendorong stabilitas parameter).
+   - elasticnet: Kombinasi penalti L1 dan L2.
+   - none: Tanpa penalti.
+- solver: Algoritma optimasi untuk mempercepat perhitungan (contoh: liblinear untuk dataset kecil).
+- random_state: Untuk memastikan hasil replikasi.
+
+2. K-Nearest Neighbors (KNN)
+KNN adalah algoritma pembelajaran tidak terawasi yang digunakan untuk klasifikasi dan regresi. Metode ini bekerja dengan cara mencari k tetangga terdekat di ruang fitur dan menggunakan mayoritas kelas tetangga untuk menentukan kelas dari data baru.
+
+Kelebihan:
+- Intuitif dan Sederhana: Konsep dasar mudah dipahami dan diimplementasikan.
+- Non-parametrik: Tidak perlu proses pelatihan yang rumit, sehingga langsung bekerja pada data yang ada.
+- 
+Kekurangan:
+- Lambat untuk Dataset Besar: Kinerja menurun significantly saat harus menghitung jarak terhadap seluruh dataset.
+- Sensitif terhadap Fitur: Mungkin tidak efektif jika fitur tidak diskalakan, karena jarak dapat mendistorsi hasil.
+- 
+Parameter:
+- n_neighbors: Menentukan jumlah tetangga yang dijadikan referensi untuk klasifikasi.
+- metric: Metode pengukuran jarak, seperti Euclidean, Manhattan, atau Minkowski.
+- weights: Menentukan apakah semua tetangga memiliki bobot yang sama atau bobot berdasarkan jarak.
+- p: Parameter untuk minkowski. Nilai p=1 untuk jarak Manhattan, dan p=2 untuk jarak Euclidean.
+
+3. Support Vector Machine (SVM)
+SVM adalah algoritma klasifikasi yang berusaha menemukan hyperplane optimal untuk memisahkan data dari dua kelas. Dengan menggunakan kernel, SVM dapat juga digunakan untuk memisahkan data non-linier.
+
+Kelebihan:
+- Efektif pada Dimensi Tinggi: Sangat baik dalam ruang fitur tinggi, sering kali lebih baik dari model lainnya.
+- Tahan Terhadap Overfitting: Dengan pemilihan kernel dan parameter yang tepat, SVM cenderung menghasilkan model yang generalisasi dengan baik.
+- 
+Kekurangan:
+- Lambat pada Dataset Besar: Waktu pelatihan bisa sangat besar untuk dataset besar, karena kompleksitas perhitungannya.
+- Perlu Tuning Parameter yang Hati-hati: Memerlukan pemilihan yang cermat untuk parameter C dan gamma agar mencapai hasil optimal.
+
+Parameter:
+- C: Mengontrol seberapa banyak kesalahan yang diizinkan dalam kelasifikasi; semakin besar nilai C, semakin ketat margin yang ditetapkan.
+- kernel: Jenis fungsi kernel yang digunakan, seperti linear, radial basis function (RBF), atau polynomial.
+- gamma: Parameter yang menentukan seberapa besar pengaruh individu data terhadap keputusan klasifikasi.
+- degree: Tingkat polinomial untuk kernel polynomial.
+- random_state: Untuk memastikan hasil konsisten.
+
+4. Naive Bayes (Bernoulli)
+Naive Bayes Bernoulli adalah algoritma klasifikasi probabilistik berdasarkan teorema Bayes, digunakan khusus untuk dataset biner. Model ini menghitung probabilitas kelas berdasarkan fitur, dengan asumsi bahwa setiap fitur bersifat independen.
+
+Kelebihan:
+- Cepat dan Efisien: Proses pelatihan dan prediksi sangat cepat, bahkan untuk dataset besar.
+- Cocok untuk Data Diskrit: Ideal untuk teks dan data yang memiliki pencilan atau fitur biner.
+
+Kekurangan:
+- Asumsi Independensi Fitur: Asumsi bahwa semua fitur independen sangat jarang terpenuhi dalam kenyataan, yang dapat menurunkan akurasi.
+Tidak Cocok untuk Data Kontinu: Hanya efektif untuk dataset diskrit, kualitas prediksi berkurang jika diterapkan pada dataset berkelanjutan.
+
+Parameter:
+- alpha: Parameter smoothing Laplace, yang membantu menghindari probabilitas nol untuk fitur yang tidak muncul dalam kelas tertentu.
+- binarize: Ambang batas binarisasi untuk data inp
+
+5. Naive Bayes (Gaussian)
+Naive Bayes Gaussian adalah variasi dari Naive Bayes yang dirancang untuk data kontinu dengan asumsi bahwa fitur mengikuti distribusi Gaussian. Model ini menghitung probabilitas kelas dengan memanfaatkan distribusi normal dari setiap fitur.
+
+Kelebihan:
+- Efisien untuk Data Kontinu: Memungkinkan toksikitas untuk mengestimasi distribusi Gaussian dari fitur, cocok untuk data numerik.
+- Tidak Memerlukan Tuning Parameter yang Rumit: Hanya memerlukan estimasi rata-rata dan varians, sehingga mudah untuk diimplementasikan.
+
+Kekurangan:
+- Sensitif terhadap Deviations dari Asumsi Gaussian: Kinerja dapat menurun jika data tidak terdistribusi secara normal atau memiliki pencilan yang signifikan.
+- Asumsi Kemandirian Fiturnya: Seperti di Naive Bayes Bernoulli, asumsi bahwa semua fitur independen sering kali tidak terpenuhi.
+
+Parameter:
+- var_smoothing: Menambahkan nilai kecil pada varians untuk menghindari pembagian nol.
+
+6. Decision Tree
+Decision Tree adalah algoritma pemodelan yang menggunakan struktur pohon untuk membuat keputusan. Setiap node dalam pohon mewakili fitur dari data, cabang mewakili keputusan pada fitur tersebut, dan daun merepresentasikan hasil klasifikasi.
+
+Kelebihan:
+- Mudah Diinterpretasikan: Visualisasi pohon keputusan memungkinkan pemahaman yang jelas tentang proses pengambilan keputusan.
+- Tidak Memerlukan Normalisasi Fitur: Dapat menangani berbagai jenis fitur, baik numerik maupun kategorikal tanpa perlu skala.
+
+Kekurangan:
+- Rentan terhadap Overfitting: Dapat beradaptasi terlalu baik pada data latih, membuatnya tidak generalisasi dengan baik ke data baru tanpa metode pemangkasan atau regulasi.
+- Sensitif terhadap Perubahan: Perubahan kecil pada data dapat menghasilkan perubahan struktural yang besar dalam pohon keputusan.
+
+Parameter:
+- max_depth: Menentukan kedalaman maksimum pohon untuk mencegah overfitting.
+- min_samples_split: Jumlah minimum sampel yang diperlukan untuk membagi node.
+- criterion: Ukuran kualitas pemisahan, seperti Gini impurity atau entropy.
+- random_state: Untuk replikasi.
+- splitter: Metode untuk memilih split (best atau random).
+
+7. Random Forest
+Random Forest adalah metode ensemble yang terdiri dari banyak decision tree yang bekerja sama untuk meningkatkan akurasi dan mengurangi resiko overfitting. Algoritma ini mengagregasi hasil dari berbagai pohon untuk memberikan prediksi yang lebih stabil.
+
+Kelebihan:
+- Robust terhadap Overfitting: Membandingkan dengan decision tree tunggal, model ensemble ini lebih tahan terhadap fluktuasi data.
+- Efektif untuk Data Besar: Terbukti bekerja dengan baik pada dataset dengan banyak fitur dan sampel.
+
+Kekurangan:
+- Kurang Interpretable: Modelnya lebih sulit dipahami dibandingkan pohon keputusan tunggal, karena jadi kompleks.
+- Lambat untuk Dataset Besar: Waktu pelatihan relatif lebih panjang dibandingkan metode lain seperti logistic regression.
+
+Parameter:
+- n_estimators: Jumlah pohon dalam ensemble.
+- criterion: Fungsi split, sama seperti Decision Tree.
+- max_depth: Kedalaman maksimum pohon.
+- min_samples_split: Sama seperti Decision Tree.
+- max_features: Jumlah fitur maksimum yang digunakan untuk split (sqrt atau log2).
+- random_state: Untuk hasil yang dapat direplikasi.
+
+8. XGBoost
+XGBoost (Extreme Gradient Boosting) adalah algoritma boosting yang berupaya memperbaiki kelemahan model-tradisional dengan mengoptimalkan kesalahan dari model sebelumnya. Ini adalah implementasi gradient boosting yang lebih cepat dan kuat.
+
+Kelebihan:
+- Cepat dan Efisien: Mampu menangani dataset besar dengan kecepatan tinggi berkat optimisasi paralel dan algoritma yang efisien.
+- Penanganan Nilai Hilang: Dapat secara otomatis mengatasi nilai hilang dalam dataset.
+
+Kekurangan:
+- Memerlukan Tuning Parameter yang Kompleks: Memerlukan pemilihan parameter yang hati-hati untuk mencapai hasil yang maksimal.
+- Risiko Overfitting: Rentan terhadap overfitting pada dataset yang sangat besar jika tidak diatur dengan baik.
+
+Parameter:
+- learning_rate: Mengontrol ukuran langkah pembelajaran (semakin kecil, semakin stabil tetapi lambat).
+- max_depth: Kedalaman maksimum pohon.
+- n_estimators: Jumlah iterasi boosting.
+- subsample: Proporsi sampel data yang digunakan dalam setiap iterasi.
+- colsample_bytree: Proporsi fitur yang digunakan untuk membuat setiap pohon.
+- eval_metric: Metrik evaluasi seperti error (akurasi) atau logloss.
+
+9. Artificial Neural Network (ANN)
+ANN adalah model pembelajaran mesin yang terinspirasi oleh jaringan saraf biologis. Model ini terdiri dari lapisan input, lapisan tersembunyi, dan lapisan output yang saling terhubung, memungkinkan pemelajaran dari data kompleks.
+
+Kelebihan:
+- Fleksibel untuk Berbagai Tipe Data: Dapat digunakan untuk klasifikasi, regresi, dan masalah lain, menjadikannya sangat serbaguna.
+- Efektif untuk Hubungan Non-Linier: Mampu memodelkan hubungan kompleks dalam data yang tidak dapat diungkap oleh model linier.
+
+Kekurangan:
+- Membutuhkan Banyak Data: Memerlukan dataset besar untuk pelatihan agar dapat menggali semua pola dan hubungan dalam data.
+- Waktu Pelatihan yang Panjang: Memakan waktu cukup lama untuk melatih model, terutama untuk struktur jaringan yang besar.
+
+Parameter:
+- layers: Menentukan struktur jaringan, mencakup jumlah dan tipe layer (input, hidden, output).
+- activation: Fungsi aktivasi yang digunakan, seperti ReLU, sigmoid, atau tanh.
+- optimizer: Metode optimasi yang digunakan untuk memperbarui bobot, seperti Adam, SGD, atau RMSprop.
+
+10. Recurrent Neural Network (RNN)
+RNN adalah jenis jaringan saraf yang dirancang untuk menangani data sekuensial, seperti teks, audio, atau urutan waktu. RNN memiliki kemampuan untuk menyimpan informasi dari langkah waktu sebelumnya, membuatnya ideal untuk data yang berurutan.
+
+Kelebihan:
+- Baik untuk Data Kronologis: Mampu menangkap pola dan ketergantungan temporal dalam data sekuensial.
+- Fleksibilitas dalam Input Panjang: Dapat menangani entri yang panjang dan beragam dalam ukuran.
+
+Kekurangan:
+- Masalah Vanishing/Exploding Gradients: Rentan terhadap masalah hilangnya atau meledaknya gradien saat pelatihan, yang bisa menghambat pembelajaran model.
+- Lambat Dibandingkan Model Tradisional: Untuk urutan panjang, pelatihan bisa sangat lambat.
+
+Parameter:
+- hidden_units: Jumlah unit tersembunyi dalam lapisan RNN, mempengaruhi kapasitas memori model.
+- activation: Fungsi aktivasi yang digunakan dalam neuron, seperti tanh atau sigmoid.
+- dropout: Tingkat dropout untuk mencegah overfitting, mengurangi pemakaian neuron tertentu selama pelatihan.
+
+11. Long Short-Term Memory (LSTM)
+LSTM adalah varian dari RNN yang dirancang untuk mengatasi masalah vanishing gradient dengan memanfaatkan memori jangka panjang. LSTM memiliki sel memori yang memungkinkan informasi disimpan lebih lama.
+
+Kelebihan:
+- Mengatasi Masalah Vanishing Gradient: Struktur unik LSTM memungkinkan pemodelan ketergantungan jangka panjang dengan efektif.
+- Cocok untuk Data Kompleks: Ideal untuk analisis data sekuensial, seperti prediksi teks, bahasa alami, dan video.
+
+Kekurangan:
+- Waktu Pelatihan yang Panjang: Membutuhkan waktu lebih banyak untuk pelatihan dibandingkan dengan model biasa.
+- Butuh Sumber Daya Komputasi Besar: Memerlukan lebih banyak memori dan unit perhitungan dibandingkan model sederhana.
+
+Parameter:
+- units: Jumlah unit dalam layer LSTM.
+- dropout: Pengaturan dropout untuk mengurangi overfitting di antara waktu.
+- return_sequences: Menentukan apakah agar setiap langkah waktu menghasilkan keluaran, cocok untuk data sekuensial lebih lanjut.
 
 ## Evaluation
+Dalam tahap evaluasi pada proses pembuatan project ini, metrik yang digunakan adalah `accuracy`. Accuracy didapatkan dengan menghitung persentase dari jumlah prediksi yang benar dibagi dengan jumlah seluruh prediksi. Rumus:
+
+$$\text{Accuracy} = \frac{\text{TP + TN}}{\text{TN + TP + FN + FP}} \times 100\%$$
+
+*Penjelasan*
+- TP (True Positive): Jumlah data positif yang diprediksi dengan benar sebagai positif.
+- TN (True Negative): Jumlah data negatif yang diprediksi dengan benar sebagai negatif.
+- FP (False Positive): Jumlah data negatif yang diprediksi secara tidak benar sebagai positif (Kesalahan Tipe I).
+- FN (False Negative): Jumlah data positif yang diprediksi secara tidak benar sebagai negatif (Kesalahan Tipe II).
+
+Rumus ini memecah akurasi menjadi rasio antara data yang diklasifikasikan dengan benar (TP dan TN) dengan jumlah total data. Mengalikan dengan 100% mengubah rasio menjadi persentase.
+
+Berikut hasil accuracy 11 buah model yang latih:
+
+| Model | Accuracy |
+| ------ | ------ |
+| Logistic Regression | 0.77 |
+| KNN  | 0.83 |
+| SVM | 0.79 |
+| Naive Bayes (Bernoulli) | 0.60 |
+| Naive Bayes (Gaussian) | 0.19 |
+| Decision Tree | 0.86 |
+| Random Forest | 0.90 |
+| XGBOOST | 0.91 |
+| ANN | 0.84 |
+| RNN | 0.89 |
+| LSTM | 0.90 |
+
+Tabel 2. Hasil Accuracy Machine Learning tanpa hyperparameter tuning
+
+Tabel 2 merupakan hasil dari akurasi pada model machine learning tanpa hyperparameter tuning. 
 
 
+| Model | Accuracy | Best Parameter |
+| ------ | ------ | ------ |
+| Logistic Regression | 0.79 | {'C': 0.01, 'penalty': 'l1', 'random_state': 0, 'solver': 'liblinear'} |
+| KNN  | 0.93 | {'metric': 'manhattan', 'n_neighbors': 3, 'p': 1, 'weights': 'distance'} |
+| SVM | 0.88 | {'C': 1, 'degree': 2, 'gamma': 'scale', 'kernel': 'rbf', 'random_state': 0} |
+| Naive Bayes (Bernoulli) | 0.76 | {'alpha': 0.1, 'binarize': 0.5} |
+| Naive Bayes (Gaussian) | 0.58 | {'var_smoothing': 1e-06} |
+| Decision Tree | 0.92 | {'criterion': 'entropy', 'max_depth': 30, 'min_samples_split': 2, 'random_state': 0, 'splitter': 'random'} |
+| Random Forest | 0.9597 | {'criterion': 'gini', 'max_depth': None, 'max_features': 'sqrt', 'min_samples_split': 2, 'n_estimators': 100, 'random_state': 0} |
+| XGBOOST | 0.9584 | {'colsample_bytree': 0.6, 'eval_metric': 'error', 'learning_rate': 0.1, 'max_depth': 10, 'n_estimators': 200, 'subsample': 1.0} |
+| ANN | 0.89 | {'batch_size': 25, 'epochs': 50, 'optimizer': 'adam'} |
+| RNN | 0.39 | {'batch_size': 16, 'build_fn__dropout_rate': 0.3, 'build_fn__optimizer': 'adam', 'build_fn__units': 32, 'epochs': 30} |
+| LSTM | 0.80 | {'batch_size': 16, 'build_fn__dropout_rate': 0.3, 'build_fn__optimizer': 'adam', 'build_fn__units': 32, 'epochs': 30} |
 
+Tabel 2. Hasil Accuracy Machine Learning dengan hyperparameter tuning
 
 
 
