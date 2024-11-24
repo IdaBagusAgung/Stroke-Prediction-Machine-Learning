@@ -27,7 +27,7 @@ Hasil analisis dapat digunakan untuk mengedukasi masyarakat tentang pentingnya g
 Teknologi prediksi berbasis data membantu dokter dalam pengambilan keputusan, memungkinkan alokasi sumber daya kesehatan yang lebih efisien dengan fokus pada pasien berisiko tinggi.
 
 #### 5. Dampak yang Diharapkan
-Dengan pendekatan ini, angka kejadian stroke dapat ditekan secara signifikan, mengurangi beban ekonomi pada keluarga dan sistem kesehatan. Selain itu, model ini dapat mendukung pengembangan aplikasi prediksi berbasis web atau mobile untuk memudahkan akses masyarakat terhadap deteksi risiko stroke【1】【2】.
+Dengan pendekatan ini, angka kejadian stroke dapat ditekan secara signifikan, mengurangi beban ekonomi pada keluarga dan sistem kesehatan【1】【2】.
 
 
 ### State Of The Art Penelitian Sebelumnya
@@ -457,9 +457,5 @@ Tabel 3 merupakan hasil evaluasi metrik berupa accuracy terhadap model machine l
 ## Daftar Pustaka
 
 1. None Indah Werdiningsih, Endah Purwanti, Iin Mardiyana, Arum Tiyas Handayani, Kharristantie Sekarlangit Suryadewi, Endang Nurjanah, Fildzah Akhlaqulkarimah, Naurah Hedy Pramiyas, & Almas, F. (2023). Analisis Prediksi Stroke Menggunakan Pendekatan Decision Tree dengan Seleksi Fitur dan Neural Network. Jurnal Sistem Cerdas, 6(3), 213–221. https://doi.org/10.37396/jsc.v6i3.310
-
-‌2. Wulandari, E., & Arita Witanti. (2024). The CLASSIFICATION OF STROKE PREDICTION USING THE SUPPORT VECTOR MACHINE (SVM) METHOD. JATISI (Jurnal Teknik Informatika Dan Sistem Informasi), 11(3). https://doi.org/10.35957/jatisi.v11i3.8044
-
-‌3. fedesoriano. (2021). Stroke Prediction Dataset. Kaggle.com. https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset
-
-‌4. 
+2. Wulandari, E., & Arita Witanti. (2024). The CLASSIFICATION OF STROKE PREDICTION USING THE SUPPORT VECTOR MACHINE (SVM) METHOD. JATISI (Jurnal Teknik Informatika Dan Sistem Informasi), 11(3). https://doi.org/10.35957/jatisi.v11i3.8044
+3. fedesoriano. (2021). Stroke Prediction Dataset. Kaggle.com. https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset
