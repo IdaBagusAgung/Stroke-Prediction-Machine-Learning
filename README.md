@@ -79,7 +79,7 @@ Tujuan dari proyek ini meliputi:
     * Long Short-Term Memory (LSTM): Untuk menangani pola temporal jangka panjang dengan mitigasi masalah vanishing gradient.
 
 #### 4. Optimalisasi Model
-- Penanganan Ketidakseimbangan Data: Dengan teknik seperti SMOTE atau ADASYN untuk meningkatkan performa model pada kelas minoritas (stroke).
+- Penanganan Ketidakseimbangan Data: Dengan teknik seperti SMOTE untuk meningkatkan performa model pada kelas minoritas (stroke).
 - Hyperparameter Tuning: Menggunakan Grid Search atau Random Search untuk mencari parameter optimal seperti jumlah neuron, learning rate, dan jumlah estimators pada ensemble models.
 - Cross-Validation: K-fold cross-validation untuk mengevaluasi model secara konsisten di seluruh dataset.
 
@@ -453,6 +453,13 @@ Kesimpulan utama dari evaluasi tanpa hyperparameter tuning ini menunjukkan bahwa
 Tabel 3. Hasil Accuracy Machine Learning dan Deep learning dengan hyperparameter tuning
 
 Tabel 3 merupakan hasil evaluasi metrik berupa accuracy terhadap model machine learning dan deep learning dengan menerapkan hyperparameter tuning. Analisis hasil evaluasi menunjukkan bahwa setelah melakukan hyperparameter tuning, Random Forest dan XGBoost mencatat akurasi tertinggi masing-masing sebesar 95.97% dan 95.84%. Random Forest, yang optimal pada parameter gini untuk pemisahan, kedalaman tak terbatas, dan penggunaan 100 pohon, sangat andal dalam menangani data non-linear dan noise berkat teknik ensemble yang digunakannya. Sementara itu, XGBoost unggul dengan parameter yang mengontrol kompleksitas pohon dan mencegah overfitting, berkat teknik boosting yang iteratif. Model KNN, dengan akurasi 93%, menunjukkan performa baik menggunakan 3 tetangga terdekat dan pengukuran jarak Manhattan, cocok untuk data dengan cluster yang terdefinisi jelas. Decision Tree juga berhasil dengan akurasi 92% berkat penggunaan entropi untuk pemisahan dan pembatasan kedalaman. Model dengan performa menengah seperti ANN (89%), SVM (88%), dan Logistic Regression (79%) menunjukkan kemampuannya di area tertentu, meskipun tidak sekompetitif model non-linear yang lebih kompleks. Di sisi lain, Naive Bayes (Bernoulli dan Gaussian) serta RNN (39%) dan LSTM (80%) menunjukkan performa lebih rendah, terutama karena keterbatasan asumsi distribusi dan kemampuan mereka dalam menangkap pola. Kesimpulannya, untuk akurasi tertinggi disarankan menggunakan Random Forest atau XGBoost; sementara Decision Tree menjadi pilihan baik jika interpretabilitas dibutuhkan, dan LSTM direkomendasikan untuk analisis pola waktu dan sekuensial.
+
+## Kesimpulan
+Tanpa penerapan hyperparameter tuning, model XGBoost menunjukkan performa terbaik dengan akurasi 91%, diikuti oleh Random Forest dan LSTM yang masing-masing mencapai 90%. Model-model ini unggul berkat kemampuannya dalam menangkap pola kompleks dan hubungan temporal dalam data, dengan XGBoost dan Random Forest menggunakan teknik ensemble untuk mengurangi overfitting, serta LSTM yang cocok untuk data berurutan. Sementara itu, model seperti Gaussian Naive Bayes dan KNN memiliki performa yang lebih rendah, dengan Naive Bayes bahkan mengalami penurunan drastis pada distribusi Gaussian. Model-model sederhana seperti Logistic Regression dan SVM memberikan hasil yang cukup baik tetapi kalah dibandingkan model ensemble atau jaringan saraf yang lebih kompleks.
+
+Setelah penerapan hyperparameter tuning menggunakan GridSearch, Random Forest dan XGBoost mencatatkan akurasi tertinggi sebesar 95.97% dan 95.84%, menunjukkan bahwa tuning dapat secara signifikan meningkatkan performa model. Kedua model ini lebih stabil dan andal dalam menangani data non-linear dan noise berkat teknik ensemble dan boosting. Model KNN juga mengalami peningkatan, mencapai akurasi 93%, sementara model lainnya seperti ANN, SVM, dan Decision Tree menunjukkan hasil yang baik pada area tertentu. Namun, Naive Bayes dan RNN masih memiliki performa yang rendah, terutama karena asumsi distribusi yang tidak sesuai dengan data.
+
+Secara keseluruhan, penerapan hyperparameter tuning dengan GridSearch memberikan hasil yang lebih optimal, dengan Random Forest dan XGBoost sebagai model unggulan untuk akurasi tertinggi, sedangkan Decision Tree dapat menjadi pilihan jika interpretabilitas dibutuhkan dan LSTM cocok untuk analisis data sekuensial atau temporal dalam prediksi stroke.
 
 ## Daftar Pustaka
 
