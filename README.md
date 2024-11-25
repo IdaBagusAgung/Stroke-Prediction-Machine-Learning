@@ -191,7 +191,7 @@ Dataset dibagi menjadi dua subset:
 Pembagian dilakukan dengan rasio 80:20, di mana 80% digunakan untuk pelatihan dan 20% untuk pengujian. Random state juga digunakan untuk memastikan hasil pembagian dataset konsisten di setiap eksekusi.
 
 8. Feature Scaling
-Data diformulasikan ulang agar semua fitur berada dalam skala yang seragam menggunakan StandardScaler. Teknik ini menstandarkan nilai-nilai fitur dengan mengurangi rata-rata dan membaginya dengan standar deviasi. Proses ini penting untuk mengurangi bias akibat perbedaan skala antar fitur dan meningkatkan efisiensi algoritma machine learning.
+Data diformulasikan ulang agar semua fitur berada dalam skala yang seragam menggunakan StandardScaler. Teknik ini menstandarkan nilai-nilai fitur dengan mengurangi rata-rata dan membaginya dengan standar deviasi. Proses ini penting untuk mengurangi bias akibat perbedaan skala antar fitur dan meningkatkan efisiensi algoritma.
 
 9. Penanganan Ketidakseimbangan Data dengan SMOTE
 Ketidakseimbangan kelas sering menjadi masalah dalam dataset, terutama jika salah satu kelas target jauh lebih sedikit dibandingkan kelas lainnya. Dalam kasus ini, digunakan SMOTE (Synthetic Minority Over-sampling Technique) untuk menyeimbangkan data. Teknik ini menghasilkan sampel sintetik dari kelas minoritas dengan cara menginterpolasi antara contoh yang ada. Hasilnya adalah dataset yang lebih seimbang, memungkinkan model untuk mempelajari pola dari kedua kelas secara lebih efektif.
@@ -375,21 +375,30 @@ Parameter:
 - activation: Fungsi aktivasi yang digunakan dalam neuron, seperti tanh atau sigmoid.
 - dropout: Tingkat dropout untuk mencegah overfitting, mengurangi pemakaian neuron tertentu selama pelatihan.
 
-11. Long Short-Term Memory (LSTM)
-LSTM adalah varian dari RNN yang dirancang untuk mengatasi masalah vanishing gradient dengan memanfaatkan memori jangka panjang. LSTM memiliki sel memori yang memungkinkan informasi disimpan lebih lama.
+### 11. Long Short-Term Memory (LSTM)
 
-Kelebihan:
-- Mengatasi Masalah Vanishing Gradient: Struktur unik LSTM memungkinkan pemodelan ketergantungan jangka panjang dengan efektif.
-- Cocok untuk Data Kompleks: Ideal untuk analisis data sekuensial, seperti prediksi teks, bahasa alami, dan video.
+**LSTM** adalah varian dari RNN yang dirancang untuk mengatasi masalah *vanishing gradient* dengan memanfaatkan memori jangka panjang. LSTM memiliki sel memori yang memungkinkan informasi disimpan lebih lama.
 
-Kekurangan:
-- Waktu Pelatihan yang Panjang: Membutuhkan waktu lebih banyak untuk pelatihan dibandingkan dengan model biasa.
-- Butuh Sumber Daya Komputasi Besar: Memerlukan lebih banyak memori dan unit perhitungan dibandingkan model sederhana.
+#### Kelebihan
+- **Mengatasi Masalah Vanishing Gradient**  
+  Struktur unik LSTM memungkinkan pemodelan ketergantungan jangka panjang dengan efektif.
+- **Cocok untuk Data Kompleks**  
+  Ideal untuk analisis data sekuensial, seperti prediksi teks, bahasa alami, dan video.
 
-Parameter:
-- units: Jumlah unit dalam layer LSTM.
-- dropout: Pengaturan dropout untuk mengurangi overfitting di antara waktu.
-- return_sequences: Menentukan apakah agar setiap langkah waktu menghasilkan keluaran, cocok untuk data sekuensial lebih lanjut.
+#### Kekurangan
+- **Waktu Pelatihan yang Panjang**  
+  Membutuhkan waktu lebih banyak untuk pelatihan dibandingkan dengan model biasa.
+- **Butuh Sumber Daya Komputasi Besar**  
+  Memerlukan lebih banyak memori dan unit perhitungan dibandingkan model sederhana.
+
+#### Parameter
+- **`units`**  
+  Jumlah unit dalam layer LSTM.
+- **`dropout`**  
+  Pengaturan dropout untuk mengurangi *overfitting* di antara waktu.
+- **`return_sequences`**  
+  Menentukan apakah agar setiap langkah waktu menghasilkan keluaran, cocok untuk data sekuensial lebih lanjut.
+
 
 ## Evaluation
 Dalam tahap evaluasi pada proses pembuatan project ini, metrik yang digunakan adalah `accuracy`. Accuracy didapatkan dengan menghitung persentase dari jumlah prediksi yang benar dibagi dengan jumlah seluruh prediksi. Rumus:
