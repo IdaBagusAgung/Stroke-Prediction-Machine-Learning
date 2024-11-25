@@ -167,45 +167,36 @@ Berikut merupakan data preparation yang diterapkan pada project ini :
 1. Data Gathering
 Pada tahap ini, data diimpor dengan hati-hati agar dapat dibaca dan diproses dengan baik menggunakan dataframe dari library Pandas. Proses ini penting untuk memastikan data yang dikumpulkan dapat diolah secara efisien dan akurat.
 
-2. Data Assessing
-Setelah data berhasil dikumpulkan, langkah ini melibatkan beberapa pengecekan untuk memastikan kualitas data, meliputi:
-- Duplicate Data
-Pengecekan dilakukan untuk mencari data yang serupa atau identik dengan data lainnya dalam dataset. Mengidentifikasi dan menghapus duplikasi penting untuk menghindari bias dalam analisis.
-- Missing Value
-Pengecekan dilakukan untuk menemukan data atau informasi yang hilang atau tidak tersedia. Menangani missing value sangat penting agar integritas dataset tetap terjaga. Pada project ini terdapat missing value pada kolom BMI, cara untuk mengisi missing value yang dilakukan pada pre-processingnya ada dengan mengisi data dengan rata-rata dari BMI yang terdapat pada dataset.
-- Outlier
-Analisis terhadap data yang menyimpang dari pola atau rata-rata sekumpulan data dilakukan untuk menentukan apakah ada outlier. Keberadaan outlier dapat memberikan informasi penting atau mengganggu model prediksi yang dikembangkan.
+2. Pemeriksaan Missing Values
+Langkah awal adalah memastikan tidak ada data yang hilang (missing values) pada dataset. Pemeriksaan dilakukan untuk mengetahui apakah terdapat kolom atau baris dengan nilai kosong. Jika terdapat missing values, langkah penanganan seperti imputasi (mengisi nilai kosong dengan rata-rata) perlu diterapkan untuk menjaga integritas dataset. Dalam kasus ini, hasil pemeriksaan menunjukkan tidak ada data yang hilang, sehingga tidak diperlukan langkah penanganan lebih lanjut untuk missing values. Pada proyek ini diterapkan pada kolom BMI yang memiliki missing value dan diisi oleh nilai rata-rata BMI.
 
-3. Data Cleaning
-Pada tahap ini, beberapa langkah diambil untuk membersihkan dan menyiapkan data agar siap untuk analisis lebih lanjut:
-- Converting Column Type
-Tipe data pada kolom tertentu diubah agar sesuai dengan kebutuhan analisis. Misalnya, kolom yang seharusnya berisi data numerik tetapi terformat sebagai string perlu diubah untuk memungkinkan operasi matematika.
-- Train Test Split
-Dataset dibagi menjadi dua bagian: satu untuk data latih dan satu lagi untuk data uji. Pembagian ini sangat penting untuk menguji model secara independen dengan data yang tidak pernah dilihat sebelumnya, sehingga kemampuan generalisasi model dapat divalidasi.
-- Normalization
-Data ditransformasi ke dalam skala yang seragam, sehingga semua fitur atau atribut memiliki rentang nilai yang sebanding. Hal ini bertujuan untuk mengurangi bias akibat perbedaan skala antar atribut dan meningkatkan kinerja algoritma pembelajaran mesin.
-- SMOTE (Synthetic Minority Over-sampling Technique)
-Ketidakseimbangan kelas dalam dataset, seperti dalam kasus fitur target (misalnya stroke), SMOTE diterapkan. Teknik ini menghasilkan contoh sintetik dari kelas minoritas dengan cara menginterpolasi antara contoh yang ada, sehingga membantu model untuk belajar dari data yang lebih seimbang.
+3. Pemilahan Fitur (X) dan Label (Y)
+Dataset dipisahkan menjadi dua bagian utama:
+- Fitur independen (X): Kolom yang digunakan untuk memprediksi hasil (dari kolom kedua hingga sebelum kolom terakhir).
+- Target label (Y): Kolom terakhir, yang merupakan output yang ingin diprediksi oleh model. Langkah ini penting untuk memisahkan variabel yang digunakan dalam analisis dan variabel target yang akan diprediksi.
 
-Proses preprocessing dalam project ini akan dijelaskan sebagai berikut:
+4. Encoding Kategorikal
+Fitur kategorikal, yang berupa data non-numerik seperti nama atau kategori, diubah menjadi representasi numerik menggunakan One-Hot Encoding. Pada dataset ini, kolom tertentu yang memiliki nilai kategorikal diterjemahkan menjadi representasi biner. Hal ini dilakukan untuk memastikan algoritma machine learning dapat memproses data tersebut. One-Hot Encoding diterapkan pada kolom yang mengandung kategori, sementara kolom lainnya tetap dipertahankan.
 
-1. Pemeriksaan Missing Values
-Fungsi data.isnull().sum() digunakan untuk menghitung jumlah data yang hilang (missing values) di setiap kolom dataset. Langkah ini penting untuk mengetahui apakah ada nilai kosong yang perlu ditangani sebelum memproses data lebih lanjut.
+5. Encoding Label
+Untuk kolom yang memiliki kategori dengan jumlah label unik sedikit (seperti "Yes/No"), digunakan Label Encoding. Teknik ini mengonversi nilai kategorikal menjadi angka diskrit (misalnya, "Yes" menjadi 1 dan "No" menjadi 0). Langkah ini mempermudah algoritma machine learning dalam memproses data dengan kategori sederhana.
 
-2. Pemilahan Fitur (X) dan Label (Y)
-Dataset dipisahkan menjadi fitur independen x (dari kolom kedua hingga sebelum kolom terakhir) dan target label y (kolom terakhir). Hal ini dilakukan dengan menggunakan iloc dari pandas. Proses ini adalah langkah awal untuk membangun model machine learning di mana fitur digunakan untuk memprediksi label.
+6. Pengecekan Dimensi Data
+Setelah proses encoding, dimensi data diperiksa untuk memastikan bahwa jumlah fitur dan label sudah sesuai dengan yang diharapkan. Hal ini memastikan data telah diproses dengan benar dan siap untuk digunakan dalam tahap berikutnya.
 
-3. Encoding Kategorikal (One-Hot Encoding)
-Untuk mengonversi fitur kategorikal menjadi bentuk numerik yang dapat diproses oleh algoritma machine learning, digunakan One-Hot Encoding.
-Kolom 0, 5, dan 9 yang berisi data kategorikal diterjemahkan menjadi representasi biner menggunakan ColumnTransformer dengan OneHotEncoder. Kolom lainnya tetap diproses tanpa perubahan (remainder='passthrough).
+7. Split Dataset
+Dataset dibagi menjadi dua subset:
+- Data latih (training set): Digunakan untuk melatih model agar dapat mengenali pola dalam data.
+- Data uji (test set): Digunakan untuk mengevaluasi performa model pada data baru yang belum pernah dilihat sebelumnya.
+Pembagian dilakukan dengan rasio 80:20, di mana 80% digunakan untuk pelatihan dan 20% untuk pengujian. Random state juga digunakan untuk memastikan hasil pembagian dataset konsisten di setiap eksekusi.
 
-4. Encoding Label (Label Encoding):
-Beberapa kolom spesifik diubah menjadi representasi numerik diskrit menggunakan Label Encoding. Ini dilakukan dengan LabelEncoder dari sklearn. Langkah ini berguna untuk kategori yang hanya memiliki dua atau sedikit label unik, seperti "Yes/No".
+8. Feature Scaling
+Data diformulasikan ulang agar semua fitur berada dalam skala yang seragam menggunakan StandardScaler. Teknik ini menstandarkan nilai-nilai fitur dengan mengurangi rata-rata dan membaginya dengan standar deviasi. Proses ini penting untuk mengurangi bias akibat perbedaan skala antar fitur dan meningkatkan efisiensi algoritma machine learning.
 
-5. Pengecekan Dimensi Data
-Ukuran data hasil preprocessing diperiksa dengan x.shape dan y.shape untuk memastikan data telah diproses dengan benar. Hal ini memastikan bahwa dimensi data sesuai dengan yang diharapkan sebelum melanjutkan ke pelatihan model.
-
-Proses di atas bertujuan untuk menyiapkan data dalam format yang dapat diproses oleh algoritma machine learning. Fitur kategorikal diubah menjadi representasi numerik, fitur target dipisahkan, dan potensi permasalahan data seperti missing values diperiksa untuk meminimalkan error selama pelatihan model. Pada proyek ini digunakan Train Test Split pada library sklearn.model_selection untuk membagi dataset menjadi data latih dan data uji dengan pembagian sebesar 20:80 dan random state sebesar 0. Semua proses ini diperlukan dalam rangka membuat model yang baik.
+9. Penanganan Ketidakseimbangan Data dengan SMOTE
+Ketidakseimbangan kelas sering menjadi masalah dalam dataset, terutama jika salah satu kelas target jauh lebih sedikit dibandingkan kelas lainnya. Dalam kasus ini, digunakan SMOTE (Synthetic Minority Over-sampling Technique) untuk menyeimbangkan data. Teknik ini menghasilkan sampel sintetik dari kelas minoritas dengan cara menginterpolasi antara contoh yang ada. Hasilnya adalah dataset yang lebih seimbang, memungkinkan model untuk mempelajari pola dari kedua kelas secara lebih efektif.
+- Sebelum penerapan SMOTE, ditampilkan jumlah data pada masing-masing kelas.
+- Setelah SMOTE, dataset di-resample sehingga jumlah data untuk setiap kelas menjadi seimbang.
 
 ## Modeling
 Pada project ini menggunakan 8 algoritma machine learning dan 3 algoritma deep learning dan juga terdapat dua kondisi dengan tidak menetapkan hyperparameter dan menerapkan hyperparameter tuning menggunakan gridsearch, yang diantaranya sebagai berikut :
