@@ -172,8 +172,8 @@ Langkah awal adalah memastikan tidak ada data yang hilang (missing values) pada 
 
 3. Pemilahan Fitur (X) dan Label (Y)
 Dataset dipisahkan menjadi dua bagian utama:
-- Fitur independen (X): Kolom yang digunakan untuk memprediksi hasil (dari kolom kedua hingga sebelum kolom terakhir).
-- Target label (Y): Kolom terakhir, yang merupakan output yang ingin diprediksi oleh model. Langkah ini penting untuk memisahkan variabel yang digunakan dalam analisis dan variabel target yang akan diprediksi.
+   - Fitur independen (X): Kolom yang digunakan untuk memprediksi hasil (dari kolom kedua hingga sebelum kolom terakhir).
+   - Target label (Y): Kolom terakhir, yang merupakan output yang ingin diprediksi oleh model. Langkah ini penting untuk memisahkan variabel yang digunakan dalam analisis dan variabel target yang akan diprediksi.
 
 4. Encoding Kategorikal
 Fitur kategorikal, yang berupa data non-numerik seperti nama atau kategori, diubah menjadi representasi numerik menggunakan One-Hot Encoding. Pada dataset ini, kolom tertentu yang memiliki nilai kategorikal diterjemahkan menjadi representasi biner. Hal ini dilakukan untuk memastikan algoritma machine learning dapat memproses data tersebut. One-Hot Encoding diterapkan pada kolom yang mengandung kategori, sementara kolom lainnya tetap dipertahankan.
@@ -186,8 +186,8 @@ Setelah proses encoding, dimensi data diperiksa untuk memastikan bahwa jumlah fi
 
 7. Split Dataset
 Dataset dibagi menjadi dua subset:
-- Data latih (training set): Digunakan untuk melatih model agar dapat mengenali pola dalam data.
-- Data uji (test set): Digunakan untuk mengevaluasi performa model pada data baru yang belum pernah dilihat sebelumnya.
+   - Data latih (training set): Digunakan untuk melatih model agar dapat mengenali pola dalam data.
+   - Data uji (test set): Digunakan untuk mengevaluasi performa model pada data baru yang belum pernah dilihat sebelumnya.
 Pembagian dilakukan dengan rasio 80:20, di mana 80% digunakan untuk pelatihan dan 20% untuk pengujian. Random state juga digunakan untuk memastikan hasil pembagian dataset konsisten di setiap eksekusi.
 
 8. Feature Scaling
@@ -195,8 +195,8 @@ Data diformulasikan ulang agar semua fitur berada dalam skala yang seragam mengg
 
 9. Penanganan Ketidakseimbangan Data dengan SMOTE
 Ketidakseimbangan kelas sering menjadi masalah dalam dataset, terutama jika salah satu kelas target jauh lebih sedikit dibandingkan kelas lainnya. Dalam kasus ini, digunakan SMOTE (Synthetic Minority Over-sampling Technique) untuk menyeimbangkan data. Teknik ini menghasilkan sampel sintetik dari kelas minoritas dengan cara menginterpolasi antara contoh yang ada. Hasilnya adalah dataset yang lebih seimbang, memungkinkan model untuk mempelajari pola dari kedua kelas secara lebih efektif.
-- Sebelum penerapan SMOTE, ditampilkan jumlah data pada masing-masing kelas.
-- Setelah SMOTE, dataset di-resample sehingga jumlah data untuk setiap kelas menjadi seimbang.
+   - Sebelum penerapan SMOTE, ditampilkan jumlah data pada masing-masing kelas.
+   - Setelah SMOTE, dataset di-resample sehingga jumlah data untuk setiap kelas menjadi seimbang.
 
 ## Modeling
 Pada project ini menggunakan 8 algoritma machine learning dan 3 algoritma deep learning dan juga terdapat dua kondisi dengan tidak menetapkan hyperparameter dan menerapkan hyperparameter tuning menggunakan gridsearch, yang diantaranya sebagai berikut :
