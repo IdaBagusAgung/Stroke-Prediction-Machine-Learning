@@ -201,179 +201,269 @@ Ketidakseimbangan kelas sering menjadi masalah dalam dataset, terutama jika sala
 ## Modeling
 Pada project ini menggunakan 8 algoritma machine learning dan 3 algoritma deep learning dan juga terdapat dua kondisi dengan tidak menetapkan hyperparameter dan menerapkan hyperparameter tuning menggunakan gridsearch, yang diantaranya sebagai berikut :
 
-1. Logistic Regression
-Logistic Regression adalah metode statistik yang digunakan untuk klasifikasi biner dengan memodelkan probabilitas bahwa suatu peristiwa terjadi. Metode ini menghasilkan sebuah fungsi sigmoid yang mengubah output regresi linier menjadi nilai antara 0 dan 1.
+### 1. Logistic Regression
 
-Kelebihan:
-- Mudah Diinterpretasikan: Model ini memberikan probabilitas yang jelas untuk klasifikasi, memudahkan pemahaman hasil.
-- Cepat dan Efisien: Proses pelatihan cepat, membuatnya efektif untuk dataset kecil hingga menengah.
-- Penerapan Luas: Sering digunakan dalam bidang medis, pemasaran, dan ilmu sosial.
+**Logistic Regression** adalah metode statistik yang digunakan untuk klasifikasi biner dengan memodelkan probabilitas suatu peristiwa terjadi. Metode ini menghasilkan fungsi sigmoid yang mengubah output regresi linier menjadi nilai antara 0 dan 1.
 
-Kekurangan:
-- Asumsi Linearitas: Kurang efektif untuk data dengan hubungan non-linier tanpa transformasi fitur.
-- Sensitif Terhadap Outlier: Kinerja bisa terpengaruh oleh data pencilan yang ada dalam dataset.
+#### Kelebihan
+- **Mudah Diinterpretasikan**  
+  Memberikan probabilitas yang jelas untuk klasifikasi, memudahkan pemahaman hasil.
+- **Cepat dan Efisien**  
+  Proses pelatihan cepat, efektif untuk dataset kecil hingga menengah.
+- **Penerapan Luas**  
+  Sering digunakan dalam bidang medis, pemasaran, dan ilmu sosial.
 
-Parameter:
-- C: Regularisasi invers (1/λ). Semakin kecil nilai C, semakin kuat regularisasi untuk menghindari overfitting.
-- penalty: Jenis penalti yang diterapkan pada koefisien model:
-   - l1: Penalti Lasso (memungkinkan sparsity).
-   - l2: Penalti Ridge (mendorong stabilitas parameter).
-   - elasticnet: Kombinasi penalti L1 dan L2.
-   - none: Tanpa penalti.
-- solver: Algoritma optimasi untuk mempercepat perhitungan (contoh: liblinear untuk dataset kecil).
-- random_state: Untuk memastikan hasil replikasi.
+#### Kekurangan
+- **Asumsi Linearitas**  
+  Kurang efektif untuk data dengan hubungan non-linier tanpa transformasi fitur.
+- **Sensitif Terhadap Outlier**  
+  Kinerja dapat terpengaruh oleh pencilan dalam dataset.
 
-2. K-Nearest Neighbors (KNN)
-KNN adalah algoritma pembelajaran tidak terawasi yang digunakan untuk klasifikasi dan regresi. Metode ini bekerja dengan cara mencari k tetangga terdekat di ruang fitur dan menggunakan mayoritas kelas tetangga untuk menentukan kelas dari data baru.
+#### Parameter
+- **`C`**  
+  Regularisasi invers (1/λ). Semakin kecil nilai C, semakin kuat regularisasi untuk menghindari overfitting.
+- **`penalty`**  
+  Jenis penalti pada koefisien model:  
+  - `l1`: Penalti Lasso.  
+  - `l2`: Penalti Ridge.  
+  - `elasticnet`: Kombinasi penalti L1 dan L2.  
+  - `none`: Tanpa penalti.  
+- **`solver`**  
+  Algoritma optimasi (contoh: `liblinear` untuk dataset kecil).
+- **`random_state`**  
+  Untuk memastikan hasil dapat direplikasi.
 
-Kelebihan:
-- Intuitif dan Sederhana: Konsep dasar mudah dipahami dan diimplementasikan.
-- Non-parametrik: Tidak perlu proses pelatihan yang rumit, sehingga langsung bekerja pada data yang ada.
-- 
-Kekurangan:
-- Lambat untuk Dataset Besar: Kinerja menurun significantly saat harus menghitung jarak terhadap seluruh dataset.
-- Sensitif terhadap Fitur: Mungkin tidak efektif jika fitur tidak diskalakan, karena jarak dapat mendistorsi hasil.
-- 
-Parameter:
-- n_neighbors: Menentukan jumlah tetangga yang dijadikan referensi untuk klasifikasi.
-- metric: Metode pengukuran jarak, seperti Euclidean, Manhattan, atau Minkowski.
-- weights: Menentukan apakah semua tetangga memiliki bobot yang sama atau bobot berdasarkan jarak.
-- p: Parameter untuk minkowski. Nilai p=1 untuk jarak Manhattan, dan p=2 untuk jarak Euclidean.
+---
 
-3. Support Vector Machine (SVM)
-SVM adalah algoritma klasifikasi yang berusaha menemukan hyperplane optimal untuk memisahkan data dari dua kelas. Dengan menggunakan kernel, SVM dapat juga digunakan untuk memisahkan data non-linier.
+### 2. K-Nearest Neighbors (KNN)
 
-Kelebihan:
-- Efektif pada Dimensi Tinggi: Sangat baik dalam ruang fitur tinggi, sering kali lebih baik dari model lainnya.
-- Tahan Terhadap Overfitting: Dengan pemilihan kernel dan parameter yang tepat, SVM cenderung menghasilkan model yang generalisasi dengan baik.
-- 
-Kekurangan:
-- Lambat pada Dataset Besar: Waktu pelatihan bisa sangat besar untuk dataset besar, karena kompleksitas perhitungannya.
-- Perlu Tuning Parameter yang Hati-hati: Memerlukan pemilihan yang cermat untuk parameter C dan gamma agar mencapai hasil optimal.
+**KNN** adalah algoritma pembelajaran yang digunakan untuk klasifikasi dan regresi. Metode ini mencari `k` tetangga terdekat di ruang fitur dan menggunakan mayoritas kelas tetangga untuk menentukan kelas data baru.
 
-Parameter:
-- C: Mengontrol seberapa banyak kesalahan yang diizinkan dalam kelasifikasi; semakin besar nilai C, semakin ketat margin yang ditetapkan.
-- kernel: Jenis fungsi kernel yang digunakan, seperti linear, radial basis function (RBF), atau polynomial.
-- gamma: Parameter yang menentukan seberapa besar pengaruh individu data terhadap keputusan klasifikasi.
-- degree: Tingkat polinomial untuk kernel polynomial.
-- random_state: Untuk memastikan hasil konsisten.
+#### Kelebihan
+- **Intuitif dan Sederhana**  
+  Konsep dasar mudah dipahami dan diimplementasikan.
+- **Non-parametrik**  
+  Tidak memerlukan proses pelatihan rumit.
 
-4. Naive Bayes (Bernoulli)
-Naive Bayes Bernoulli adalah algoritma klasifikasi probabilistik berdasarkan teorema Bayes, digunakan khusus untuk dataset biner. Model ini menghitung probabilitas kelas berdasarkan fitur, dengan asumsi bahwa setiap fitur bersifat independen.
+#### Kekurangan
+- **Lambat untuk Dataset Besar**  
+  Kinerja menurun saat menghitung jarak terhadap seluruh dataset.
+- **Sensitif terhadap Fitur**  
+  Memerlukan skala fitur agar hasil tidak terdistorsi.
 
-Kelebihan:
-- Cepat dan Efisien: Proses pelatihan dan prediksi sangat cepat, bahkan untuk dataset besar.
-- Cocok untuk Data Diskrit: Ideal untuk teks dan data yang memiliki pencilan atau fitur biner.
+#### Parameter
+- **`n_neighbors`**  
+  Jumlah tetangga yang dijadikan referensi.
+- **`metric`**  
+  Metode pengukuran jarak, seperti Euclidean atau Manhattan.
+- **`weights`**  
+  Menentukan apakah semua tetangga memiliki bobot sama atau berdasarkan jarak.
+- **`p`**  
+  Parameter untuk Minkowski. Nilai `p=1` untuk jarak Manhattan, `p=2` untuk jarak Euclidean.
 
-Kekurangan:
-- Asumsi Independensi Fitur: Asumsi bahwa semua fitur independen sangat jarang terpenuhi dalam kenyataan, yang dapat menurunkan akurasi.
-Tidak Cocok untuk Data Kontinu: Hanya efektif untuk dataset diskrit, kualitas prediksi berkurang jika diterapkan pada dataset berkelanjutan.
+---
 
-Parameter:
-- alpha: Parameter smoothing Laplace, yang membantu menghindari probabilitas nol untuk fitur yang tidak muncul dalam kelas tertentu.
-- binarize: Ambang batas binarisasi untuk data inp
+### 3. Support Vector Machine (SVM)
 
-5. Naive Bayes (Gaussian)
-Naive Bayes Gaussian adalah variasi dari Naive Bayes yang dirancang untuk data kontinu dengan asumsi bahwa fitur mengikuti distribusi Gaussian. Model ini menghitung probabilitas kelas dengan memanfaatkan distribusi normal dari setiap fitur.
+**SVM** adalah algoritma klasifikasi yang mencari hyperplane optimal untuk memisahkan data dari dua kelas. Dengan kernel, SVM juga dapat memisahkan data non-linier.
 
-Kelebihan:
-- Efisien untuk Data Kontinu: Memungkinkan toksikitas untuk mengestimasi distribusi Gaussian dari fitur, cocok untuk data numerik.
-- Tidak Memerlukan Tuning Parameter yang Rumit: Hanya memerlukan estimasi rata-rata dan varians, sehingga mudah untuk diimplementasikan.
+#### Kelebihan
+- **Efektif pada Dimensi Tinggi**  
+  Sangat baik dalam ruang fitur tinggi.
+- **Tahan Terhadap Overfitting**  
+  Cenderung menghasilkan model yang generalisasi dengan baik.
 
-Kekurangan:
-- Sensitif terhadap Deviations dari Asumsi Gaussian: Kinerja dapat menurun jika data tidak terdistribusi secara normal atau memiliki pencilan yang signifikan.
-- Asumsi Kemandirian Fiturnya: Seperti di Naive Bayes Bernoulli, asumsi bahwa semua fitur independen sering kali tidak terpenuhi.
+#### Kekurangan
+- **Lambat pada Dataset Besar**  
+  Waktu pelatihan besar karena kompleksitas perhitungan.
+- **Perlu Tuning Parameter yang Hati-hati**  
+  Memerlukan pemilihan parameter `C` dan `gamma` yang cermat.
 
-Parameter:
-- var_smoothing: Menambahkan nilai kecil pada varians untuk menghindari pembagian nol.
+#### Parameter
+- **`C`**  
+  Mengontrol kesalahan yang diizinkan dalam klasifikasi.
+- **`kernel`**  
+  Jenis kernel yang digunakan, seperti `linear`, `rbf`, atau `poly`.
+- **`gamma`**  
+  Besarnya pengaruh data individu pada keputusan klasifikasi.
+- **`degree`**  
+  Tingkat polinomial untuk kernel polynomial.
+- **`random_state`**  
+  Untuk hasil konsisten.
 
-6. Decision Tree
-Decision Tree adalah algoritma pemodelan yang menggunakan struktur pohon untuk membuat keputusan. Setiap node dalam pohon mewakili fitur dari data, cabang mewakili keputusan pada fitur tersebut, dan daun merepresentasikan hasil klasifikasi.
+---
 
-Kelebihan:
-- Mudah Diinterpretasikan: Visualisasi pohon keputusan memungkinkan pemahaman yang jelas tentang proses pengambilan keputusan.
-- Tidak Memerlukan Normalisasi Fitur: Dapat menangani berbagai jenis fitur, baik numerik maupun kategorikal tanpa perlu skala.
+### 4. Naive Bayes (Bernoulli)
 
-Kekurangan:
-- Rentan terhadap Overfitting: Dapat beradaptasi terlalu baik pada data latih, membuatnya tidak generalisasi dengan baik ke data baru tanpa metode pemangkasan atau regulasi.
-- Sensitif terhadap Perubahan: Perubahan kecil pada data dapat menghasilkan perubahan struktural yang besar dalam pohon keputusan.
+**Naive Bayes Bernoulli** adalah algoritma klasifikasi probabilistik berdasarkan teorema Bayes, khusus untuk dataset biner.
 
-Parameter:
-- max_depth: Menentukan kedalaman maksimum pohon untuk mencegah overfitting.
-- min_samples_split: Jumlah minimum sampel yang diperlukan untuk membagi node.
-- criterion: Ukuran kualitas pemisahan, seperti Gini impurity atau entropy.
-- random_state: Untuk replikasi.
-- splitter: Metode untuk memilih split (best atau random).
+#### Kelebihan
+- **Cepat dan Efisien**  
+  Proses pelatihan dan prediksi sangat cepat.
+- **Cocok untuk Data Diskrit**  
+  Ideal untuk teks atau data biner.
 
-7. Random Forest
-Random Forest adalah metode ensemble yang terdiri dari banyak decision tree yang bekerja sama untuk meningkatkan akurasi dan mengurangi resiko overfitting. Algoritma ini mengagregasi hasil dari berbagai pohon untuk memberikan prediksi yang lebih stabil.
+#### Kekurangan
+- **Asumsi Independensi Fitur**  
+  Jarang terpenuhi dalam kenyataan, dapat menurunkan akurasi.
+- **Tidak Cocok untuk Data Kontinu**  
+  Kualitas prediksi berkurang jika diterapkan pada dataset kontinu.
 
-Kelebihan:
-- Robust terhadap Overfitting: Membandingkan dengan decision tree tunggal, model ensemble ini lebih tahan terhadap fluktuasi data.
-- Efektif untuk Data Besar: Terbukti bekerja dengan baik pada dataset dengan banyak fitur dan sampel.
+#### Parameter
+- **`alpha`**  
+  Parameter smoothing Laplace untuk menghindari probabilitas nol.
+- **`binarize`**  
+  Ambang batas untuk binarisasi data input.
 
-Kekurangan:
-- Kurang Interpretable: Modelnya lebih sulit dipahami dibandingkan pohon keputusan tunggal, karena jadi kompleks.
-- Lambat untuk Dataset Besar: Waktu pelatihan relatif lebih panjang dibandingkan metode lain seperti logistic regression.
+---
 
-Parameter:
-- n_estimators: Jumlah pohon dalam ensemble.
-- criterion: Fungsi split, sama seperti Decision Tree.
-- max_depth: Kedalaman maksimum pohon.
-- min_samples_split: Sama seperti Decision Tree.
-- max_features: Jumlah fitur maksimum yang digunakan untuk split (sqrt atau log2).
-- random_state: Untuk hasil yang dapat direplikasi.
+### 5. Naive Bayes (Gaussian)
 
-8. XGBoost
-XGBoost (Extreme Gradient Boosting) adalah algoritma boosting yang berupaya memperbaiki kelemahan model-tradisional dengan mengoptimalkan kesalahan dari model sebelumnya. Ini adalah implementasi gradient boosting yang lebih cepat dan kuat.
+**Naive Bayes Gaussian** adalah variasi dari Naive Bayes untuk data kontinu dengan asumsi fitur mengikuti distribusi Gaussian.
 
-Kelebihan:
-- Cepat dan Efisien: Mampu menangani dataset besar dengan kecepatan tinggi berkat optimisasi paralel dan algoritma yang efisien.
-- Penanganan Nilai Hilang: Dapat secara otomatis mengatasi nilai hilang dalam dataset.
+#### Kelebihan
+- **Efisien untuk Data Kontinu**  
+  Cocok untuk data numerik.
+- **Tidak Memerlukan Tuning Parameter yang Rumit**  
+  Hanya memerlukan estimasi rata-rata dan varians.
 
-Kekurangan:
-- Memerlukan Tuning Parameter yang Kompleks: Memerlukan pemilihan parameter yang hati-hati untuk mencapai hasil yang maksimal.
-- Risiko Overfitting: Rentan terhadap overfitting pada dataset yang sangat besar jika tidak diatur dengan baik.
+#### Kekurangan
+- **Sensitif terhadap Deviations dari Asumsi Gaussian**  
+  Kinerja menurun jika data tidak terdistribusi normal.
+- **Asumsi Independensi Fitur**  
+  Sama seperti Bernoulli.
 
-Parameter:
-- learning_rate: Mengontrol ukuran langkah pembelajaran (semakin kecil, semakin stabil tetapi lambat).
-- max_depth: Kedalaman maksimum pohon.
-- n_estimators: Jumlah iterasi boosting.
-- subsample: Proporsi sampel data yang digunakan dalam setiap iterasi.
-- colsample_bytree: Proporsi fitur yang digunakan untuk membuat setiap pohon.
-- eval_metric: Metrik evaluasi seperti error (akurasi) atau logloss.
+#### Parameter
+- **`var_smoothing`**  
+  Menambahkan nilai kecil pada varians untuk menghindari pembagian nol.
 
-9. Artificial Neural Network (ANN)
-ANN adalah model pembelajaran mesin yang terinspirasi oleh jaringan saraf biologis. Model ini terdiri dari lapisan input, lapisan tersembunyi, dan lapisan output yang saling terhubung, memungkinkan pemelajaran dari data kompleks.
+---
 
-Kelebihan:
-- Fleksibel untuk Berbagai Tipe Data: Dapat digunakan untuk klasifikasi, regresi, dan masalah lain, menjadikannya sangat serbaguna.
-- Efektif untuk Hubungan Non-Linier: Mampu memodelkan hubungan kompleks dalam data yang tidak dapat diungkap oleh model linier.
+### 6. Decision Tree
 
-Kekurangan:
-- Membutuhkan Banyak Data: Memerlukan dataset besar untuk pelatihan agar dapat menggali semua pola dan hubungan dalam data.
-- Waktu Pelatihan yang Panjang: Memakan waktu cukup lama untuk melatih model, terutama untuk struktur jaringan yang besar.
+**Decision Tree** menggunakan struktur pohon untuk membuat keputusan. Setiap node mewakili fitur, cabang adalah keputusan, dan daun adalah hasil klasifikasi.
 
-Parameter:
-- layers: Menentukan struktur jaringan, mencakup jumlah dan tipe layer (input, hidden, output).
-- activation: Fungsi aktivasi yang digunakan, seperti ReLU, sigmoid, atau tanh.
-- optimizer: Metode optimasi yang digunakan untuk memperbarui bobot, seperti Adam, SGD, atau RMSprop.
+#### Kelebihan
+- **Mudah Diinterpretasikan**  
+  Visualisasi pohon membantu pemahaman proses keputusan.
+- **Tidak Memerlukan Normalisasi Fitur**  
+  Dapat menangani fitur numerik dan kategorikal.
 
-10. Recurrent Neural Network (RNN)
-RNN adalah jenis jaringan saraf yang dirancang untuk menangani data sekuensial, seperti teks, audio, atau urutan waktu. RNN memiliki kemampuan untuk menyimpan informasi dari langkah waktu sebelumnya, membuatnya ideal untuk data yang berurutan.
+#### Kekurangan
+- **Rentan terhadap Overfitting**  
+  Membutuhkan pemangkasan atau regulasi.
+- **Sensitif terhadap Perubahan Data**  
+  Perubahan kecil pada data dapat mengubah struktur pohon secara signifikan.
 
-Kelebihan:
-- Baik untuk Data Kronologis: Mampu menangkap pola dan ketergantungan temporal dalam data sekuensial.
-- Fleksibilitas dalam Input Panjang: Dapat menangani entri yang panjang dan beragam dalam ukuran.
+#### Parameter
+- **`max_depth`**  
+  Kedalaman maksimum pohon.
+- **`min_samples_split`**  
+  Minimum sampel untuk membagi node.
+- **`criterion`**  
+  Ukuran kualitas pemisahan (Gini impurity atau entropy).
+- **`splitter`**  
+  Metode pemilihan split (`best` atau `random`).
 
-Kekurangan:
-- Masalah Vanishing/Exploding Gradients: Rentan terhadap masalah hilangnya atau meledaknya gradien saat pelatihan, yang bisa menghambat pembelajaran model.
-- Lambat Dibandingkan Model Tradisional: Untuk urutan panjang, pelatihan bisa sangat lambat.
+---
 
-Parameter:
-- hidden_units: Jumlah unit tersembunyi dalam lapisan RNN, mempengaruhi kapasitas memori model.
-- activation: Fungsi aktivasi yang digunakan dalam neuron, seperti tanh atau sigmoid.
-- dropout: Tingkat dropout untuk mencegah overfitting, mengurangi pemakaian neuron tertentu selama pelatihan.
+### 7. Random Forest
+
+**Random Forest** adalah metode ensemble yang menggunakan banyak decision tree untuk meningkatkan akurasi dan mengurangi overfitting.
+
+#### Kelebihan
+- **Robust terhadap Overfitting**  
+  Lebih stabil dibandingkan decision tree tunggal.
+- **Efektif untuk Data Besar**  
+  Bekerja baik pada dataset besar.
+
+#### Kekurangan
+- **Kurang Interpretable**  
+  Kompleksitas tinggi dibandingkan decision tree tunggal.
+- **Lambat untuk Dataset Besar**  
+  Waktu pelatihan relatif lama.
+
+#### Parameter
+- **`n_estimators`**  
+  Jumlah pohon dalam ensemble.
+- **`criterion`**  
+  Fungsi split (Gini atau entropy).
+- **`max_depth`**  
+  Kedalaman maksimum pohon.
+- **`min_samples_split`**  
+  Sama seperti Decision Tree.
+
+---
+
+### 8. XGBoost
+
+**XGBoost** adalah algoritma boosting yang memperbaiki kelemahan model sebelumnya dengan optimasi gradient boosting.
+
+#### Kelebihan
+- **Cepat dan Efisien**  
+  Mendukung optimisasi paralel.
+- **Penanganan Nilai Hilang**  
+  Secara otomatis menangani nilai hilang.
+
+#### Kekurangan
+- **Memerlukan Tuning Parameter yang Kompleks**  
+  Butuh pemilihan parameter yang hati-hati.
+- **Risiko Overfitting**  
+  Rentan terhadap overfitting pada dataset besar.
+
+#### Parameter
+- **`learning_rate`**  
+  Ukuran langkah pembelajaran.
+- **`max_depth`**  
+  Kedalaman maksimum pohon.
+- **`n_estimators`**  
+  Jumlah iterasi boosting.
+
+---
+
+### 9. Artificial Neural Network (ANN)
+
+**ANN** adalah model pembelajaran mesin yang terinspirasi oleh jaringan saraf biologis, dengan lapisan input, tersembunyi, dan output.
+
+#### Kelebihan
+- **Fleksibel untuk Berbagai Tipe Data**  
+  Cocok untuk klasifikasi, regresi, dan lainnya.
+- **Efektif untuk Hubungan Non-Linier**  
+  Mampu memodelkan hubungan kompleks.
+
+#### Kekurangan
+- **Membutuhkan Banyak Data**  
+  Memerlukan dataset besar untuk pelatihan.
+- **Waktu Pelatihan Panjang**  
+  Memakan waktu cukup lama untuk pelatihan.
+
+#### Parameter
+- **`layers`**  
+  Struktur jaringan, termasuk jumlah layer.
+- **`activation`**  
+  Fungsi aktivasi seperti ReLU atau sigmoid.
+- **`optimizer`**  
+  Metode optimasi, seperti Adam atau SGD.
+
+---
+
+### 10. Recurrent Neural Network (RNN)
+
+**RNN** adalah jaringan saraf untuk data sekuensial, menggunakan lapisan yang memiliki memori internal.
+
+#### Kelebihan
+- **Efektif untuk Data Sekuensial**  
+  Cocok untuk teks dan time series.
+- **Memori Jangka Panjang**  
+  Dengan LSTM/GRU, mampu mengingat dependensi jangka panjang.
+
+#### Kekurangan
+- **Masalah Vanishing Gradient**  
+  Kinerja menurun jika sekuens terlalu panjang.
+- **Waktu Pelatihan Lama**  
+  Butuh waktu lebih lama dibandingkan model tradisional.
+
+--- 
 
 ### 11. Long Short-Term Memory (LSTM)
 
