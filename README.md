@@ -547,9 +547,53 @@ Tabel 3 merupakan hasil evaluasi metrik berupa accuracy terhadap model machine l
 ## Kesimpulan
 Tanpa penerapan hyperparameter tuning, model XGBoost menunjukkan performa terbaik dengan akurasi 91%, diikuti oleh Random Forest dan LSTM yang masing-masing mencapai 90%. Model-model ini unggul berkat kemampuannya dalam menangkap pola kompleks dan hubungan temporal dalam data, dengan XGBoost dan Random Forest menggunakan teknik ensemble untuk mengurangi overfitting, serta LSTM yang cocok untuk data berurutan. Sementara itu, model seperti Gaussian Naive Bayes dan KNN memiliki performa yang lebih rendah, dengan Naive Bayes bahkan mengalami penurunan drastis pada distribusi Gaussian. Model-model sederhana seperti Logistic Regression dan SVM memberikan hasil yang cukup baik tetapi kalah dibandingkan model ensemble atau jaringan saraf yang lebih kompleks.
 
-Setelah penerapan hyperparameter tuning menggunakan GridSearch, Random Forest dan XGBoost mencatatkan akurasi tertinggi sebesar 95.97% dan 95.84%, menunjukkan bahwa tuning dapat secara signifikan meningkatkan performa model. Kedua model ini lebih stabil dan andal dalam menangani data non-linear dan noise berkat teknik ensemble dan boosting. Model KNN juga mengalami peningkatan, mencapai akurasi 93%, sementara model lainnya seperti ANN, SVM, dan Decision Tree menunjukkan hasil yang baik pada area tertentu. Namun, Naive Bayes dan RNN masih memiliki performa yang rendah, terutama karena asumsi distribusi yang tidak sesuai dengan data.
+Setelah penerapan hyperparameter tuning menggunakan GridSearch, Random Forest dan XGBoost mencatatkan akurasi tertinggi sebesar 95.97% dan 95.84%, menunjukkan bahwa tuning dapat secara signifikan meningkatkan performa model. Kedua model ini lebih stabil dan andal dalam menangani data non-linear dan noise berkat teknik ensemble dan boosting. Model KNN juga mengalami peningkatan, mencapai akurasi 93%, sementara model lainnya seperti ANN, SVM, dan Decision Tree menunjukkan hasil yang baik pada area tertentu. Namun, Naive Bayes dan RNN masih memiliki performa yang rendah, terutama karena asumsi distribusi yang tidak sesuai dengan data. Secara keseluruhan, penerapan hyperparameter tuning dengan GridSearch memberikan hasil yang lebih optimal, dengan Random Forest dan XGBoost sebagai model unggulan untuk akurasi tertinggi, sedangkan Decision Tree dapat menjadi pilihan jika interpretabilitas dibutuhkan dan LSTM cocok untuk analisis data sekuensial atau temporal dalam prediksi stroke.
 
-Secara keseluruhan, penerapan hyperparameter tuning dengan GridSearch memberikan hasil yang lebih optimal, dengan Random Forest dan XGBoost sebagai model unggulan untuk akurasi tertinggi, sedangkan Decision Tree dapat menjadi pilihan jika interpretabilitas dibutuhkan dan LSTM cocok untuk analisis data sekuensial atau temporal dalam prediksi stroke.
+## Kesimpulan Dampak Model Terhadap Business Understanding
+
+## 1. Menjawab Problem Statements
+Model yang dievaluasi telah berhasil menjawab sebagian besar problem statements.
+
+- **Efektivitas Model Machine Learning dan Deep Learning**  
+  Model XGBoost dan Random Forest menunjukkan performa terbaik dengan akurasi tinggi (95.97% dan 95.84% setelah hyperparameter tuning).  
+  Ini menunjukkan bahwa algoritma ensemble sangat efektif dalam memprediksi risiko stroke berdasarkan data klinis dan demografis.
+
+- **Identifikasi Algoritma Terbaik**  
+  Berdasarkan evaluasi, XGBoost dan Random Forest adalah algoritma unggulan yang memberikan hasil terbaik.  
+  Model LSTM juga memiliki potensi besar untuk data temporal, meskipun tidak menjadi yang terbaik pada data ini.
+
+- **Dukungan untuk Penelitian Kesehatan**  
+  Hasil analisis mengungkapkan bahwa faktor-faktor seperti tekanan darah, kadar glukosa, dan BMI memiliki hubungan signifikan dengan risiko stroke.  
+  Hal ini memberikan wawasan yang dapat mendukung analisis tren faktor risiko dan pengembangan strategi pencegahan.
+
+## 2. Mencapai Goals
+Tujuan dari proyek ini berhasil dicapai.
+
+- **Pembangunan Model Akurasi Tinggi**  
+  Dengan akurasi hingga 95.97%, proyek ini telah menghasilkan model prediksi risiko stroke yang sangat andal.
+
+- **Perbandingan Performansi Algoritma**  
+  Evaluasi menyeluruh terhadap berbagai algoritma memberikan pemahaman yang jelas tentang kekuatan dan kelemahan masing-masing metode.
+
+- **Wawasan untuk Pencegahan Stroke**  
+  Identifikasi pola utama dalam data memungkinkan pengembangan sistem berbasis data untuk rekomendasi pencegahan stroke.
+
+## 3. Dampak Solusi Statement
+Solusi yang dirancang berdampak signifikan terhadap hasil proyek.
+
+- **Analisis Data dan Preprocessing**  
+  Proses ini membantu dalam mengidentifikasi fitur-fitur penting yang relevan dengan risiko stroke, seperti tekanan darah, glukosa, dan BMI.
+
+- **Penerapan Algoritma Machine Learning dan Deep Learning**  
+  Penggunaan berbagai model memberikan wawasan luas tentang pola risiko stroke dalam data.  
+  Model ensemble seperti XGBoost dan Random Forest memberikan hasil terbaik.
+
+- **Optimalisasi Model**  
+  Hyperparameter tuning meningkatkan akurasi hingga hampir 96%, menunjukkan pentingnya tahap ini dalam menghasilkan prediksi yang lebih akurat.
+
+- **Penanganan Ketidakseimbangan Data**  
+  Teknik SMOTE memastikan bahwa model dapat menangani kelas minoritas (stroke) dengan lebih baik, meningkatkan keadilan dalam prediksi.
+
 
 ## Daftar Pustaka
 
